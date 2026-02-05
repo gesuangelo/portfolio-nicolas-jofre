@@ -10,285 +10,69 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: currentColor;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        .contact-card {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #292524 0%, #1c1917 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-        .contact-card:hover::before {
-            opacity: 1;
-        }
-        .contact-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
-        }
-        .contact-icon {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .contact-card:hover .contact-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        .magnetic-btn {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .social-link {
-            position: relative;
-            overflow: hidden;
-        }
-        .social-link::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: currentColor;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .social-link:hover::after {
-            opacity: 0.1;
-        }
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #44403c 0%, #292524 100%);
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        /* Logo-specific styling for better visibility */
-        .logo-image {
-            filter: none;
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
+        * { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background-color: currentColor; transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        
+        .contact-card { transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1); border: 1px solid #292524; }
+        .contact-card:hover { transform: scale(1.02); border-color: #57534e; background: #1c1917; }
+        
+        .logo-image { filter: invert(1); mix-blend-mode: screen; display: block; max-width: 100%; height: auto; }
+        
+        .fade-in { animation: fadeIn 1s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-stone-950 text-stone-100 min-h-screen relative overflow-hidden">
-
-    <!-- Floating Shapes -->
-    <div class="floating-shape w-48 h-48 sm:w-64 sm:h-64 -top-24 sm:-top-32 -right-24 sm:-right-32" style="animation-delay: 0s;"></div>
-    <div class="floating-shape w-36 h-36 sm:w-48 sm:h-48 top-1/4 -left-16 sm:-left-24" style="animation-delay: 2s;"></div>
-    <div class="floating-shape w-24 h-24 sm:w-32 sm:h-32 bottom-1/4 right-1/4" style="animation-delay: 4s;"></div>
+<body class="bg-stone-950 text-stone-100 min-h-screen">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/95 backdrop-blur-md border-b border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 md:py-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-                <!-- Logo - Robust and Centered -->
-                <a href="../index.html" class="flex items-center justify-center w-full md:w-auto">
-                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain" style="filter: brightness(0) invert(1);">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/90 backdrop-blur-lg border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
+            <div class="flex flex-col items-center justify-center gap-6">
+                <a href="../index.html" class="flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
+                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain">
                 </a>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-6 lg:gap-10">
-                    <a href="../index.html" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Inicio</a>
-                    <a href="../portafolio/" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Portafolio</a>
-                    <a href="index.html" class="nav-link active text-sm font-medium tracking-wide text-stone-100 transition-colors">Contacto</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2 absolute right-4 sm:right-6">
-                    <svg class="w-6 h-6 text-stone-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-stone-800">
-                <div class="flex flex-col items-center gap-3 pb-2">
-                    <a href="../index.html" class="text-sm font-medium text-stone-400 py-1">Inicio</a>
-                    <a href="../portafolio/" class="text-sm font-medium text-stone-400 py-1">Portafolio</a>
-                    <a href="index.html" class="text-sm font-medium text-stone-100 py-1">Contacto</a>
+                <div class="flex items-center justify-center gap-8 md:gap-12">
+                    <a href="../index.html" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Inicio</a>
+                    <a href="../portafolio/" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Portafolio</a>
+                    <a href="index.html" class="nav-link active text-xs font-bold uppercase tracking-[0.2em] text-stone-100 transition-colors">Contacto</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Contact Section -->
-    <section class="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 relative">
-        <div class="max-w-4xl mx-auto w-full relative z-10">
-            <!-- Header -->
-            <div class="text-center mb-10 sm:mb-12 md:mb-16 fade-in">
-                <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium mb-4 sm:mb-6">
-                    Hablemos
-                </h1>
-                <p class="text-base sm:text-lg md:text-xl text-stone-400 max-w-2xl mx-auto px-2">
-                    ¿Tienes un proyecto en mente? Me encantaría escuchar sobre tu visión y cómo puedo ayudarte a hacerla realidad.
-                </p>
-            </div>
-
-            <!-- Contact Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-12 md:mb-16">
-                <!-- Email Card -->
-                <a href="mailto:hola@nicolasjofre.cl" class="contact-card fade-in stagger-1 bg-stone-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-stone-800 text-center group">
-                    <div class="contact-icon w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 flex items-center justify-center bg-stone-800 rounded-full">
-                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-serif text-base sm:text-lg font-medium mb-2">Email</h3>
-                    <p class="text-xs sm:text-sm text-stone-400 group-hover:text-stone-200 transition-colors">
-                        hola@nicolasjofre.cl
-                    </p>
-                </a>
-
-                <!-- Phone Card -->
-                <div class="contact-card fade-in stagger-2 bg-stone-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-stone-800 text-center">
-                    <div class="contact-icon w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 flex items-center justify-center bg-stone-800 rounded-full">
-                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-serif text-base sm:text-lg font-medium mb-2">Teléfono</h3>
-                    <p class="text-xs sm:text-sm text-stone-400">
-                        +56 9 XXXX XXXX
-                    </p>
+    <section class="min-h-screen flex items-center justify-center px-6 pt-64 pb-20">
+        <div class="max-w-4xl mx-auto w-full text-center">
+            <h1 class="font-serif text-4xl sm:text-6xl font-medium mb-12 fade-in">Hablemos</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 fade-in">
+                <div class="contact-card p-10 rounded-3xl">
+                    <h3 class="font-serif text-xl mb-4">Email</h3>
+                    <p class="text-stone-400 text-sm tracking-wide">hola@nicolasjofre.cl</p>
                 </div>
-
-                <!-- Location Card -->
-                <div class="contact-card fade-in stagger-3 bg-stone-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-stone-800 text-center">
-                    <div class="contact-icon w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 flex items-center justify-center bg-stone-800 rounded-full">
-                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-serif text-base sm:text-lg font-medium mb-2">Ubicación</h3>
-                    <p class="text-xs sm:text-sm text-stone-400">
-                        Santiago, Chile
-                    </p>
+                <div class="contact-card p-10 rounded-3xl">
+                    <h3 class="font-serif text-xl mb-4">Redes</h3>
+                    <p class="text-stone-400 text-sm tracking-wide">@nicolasjofre.design</p>
+                </div>
+                <div class="contact-card p-10 rounded-3xl">
+                    <h3 class="font-serif text-xl mb-4">Ubicación</h3>
+                    <p class="text-stone-400 text-sm tracking-wide">Santiago, Chile</p>
                 </div>
             </div>
 
-            <!-- CTA Section -->
-            <div class="text-center fade-in">
-                <p class="text-sm sm:text-base text-stone-400 mb-6 sm:mb-8">
-                    Sígueme en redes sociales para ver más de mi trabajo
-                </p>
-                
-                <div class="flex justify-center gap-4 sm:gap-6">
-                    <!-- Instagram -->
-                    <a href="#" class="social-link w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-stone-800 rounded-full text-stone-400 hover:text-stone-200 transition-all" aria-label="Instagram">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <!-- Behance -->
-                    <a href="#" class="social-link w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-stone-800 rounded-full text-stone-400 hover:text-stone-200 transition-all" aria-label="Behance">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-                        </svg>
-                    </a>
-                    <!-- LinkedIn -->
-                    <a href="#" class="social-link w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-stone-800 rounded-full text-stone-400 hover:text-stone-200 transition-all" aria-label="LinkedIn">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+            <a href="mailto:hola@nicolasjofre.cl" class="inline-block px-12 py-6 bg-white text-stone-950 text-xs font-bold uppercase tracking-widest hover:bg-stone-200 transition-all">
+                Iniciar Proyecto
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-6 sm:py-8 px-4 sm:px-6 border-t border-stone-800">
-        <div class="max-w-7xl mx-auto text-center">
-            <p class="text-xs sm:text-sm text-stone-500">
-                © 2025 Nicolás Jofre. Todos los derechos reservados.
-            </p>
-        </div>
+    <footer class="py-12 px-6 border-t border-stone-900 bg-stone-950 text-center">
+        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-600">© 2025 Nicolás Jofre · Visual Designer</p>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Close mobile menu when clicking on a link
-        if (mobileMenu) {
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        }
-
-        // Trigger animations on load
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                el.style.opacity = '1';
-            });
-        });
-
-        // Magnetic effect for contact cards (subtle)
-        const cards = document.querySelectorAll('.contact-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                card.style.transform = `translateY(-8px) translate(${x * 0.02}px, ${y * 0.02}px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-    </script>
 </body>
 </html>

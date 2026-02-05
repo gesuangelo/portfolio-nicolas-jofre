@@ -18,28 +18,21 @@
         }
         .masonry-grid {
             column-count: 1;
-            column-gap: 1rem;
+            column-gap: 2rem;
         }
-        @media (min-width: 640px) {
+        @media (min-width: 768px) {
             .masonry-grid {
                 column-count: 2;
-                column-gap: 1.5rem;
             }
         }
-        @media (min-width: 1024px) {
+        @media (min-width: 1280px) {
             .masonry-grid {
                 column-count: 3;
-                column-gap: 1.5rem;
             }
         }
         .masonry-item {
             break-inside: avoid;
-            margin-bottom: 1rem;
-        }
-        @media (min-width: 640px) {
-            .masonry-item {
-                margin-bottom: 1.5rem;
-            }
+            margin-bottom: 2rem;
         }
         .nav-link {
             position: relative;
@@ -60,27 +53,29 @@
         }
         .portfolio-item {
             overflow: hidden;
+            background-color: #1c1917;
+            border-radius: 1.5rem;
+            transition: all 0.5s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5);
         }
         .portfolio-item img {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 1s cubic-bezier(0.2, 0, 0.2, 1);
         }
         .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-        .portfolio-overlay {
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
+            transform: scale(1.1);
         }
         .category-btn.active {
             background-color: #fafaf9;
             color: #0c0a09;
         }
-        /* Logo-specific styling for better visibility */
+        
+        /* Logo Fix: For black text on white background to become white text on dark */
         .logo-image {
-            filter: none;
+            filter: invert(1);
+            mix-blend-mode: screen;
             display: block;
             max-width: 100%;
             height: auto;
@@ -90,79 +85,63 @@
 <body class="bg-stone-950 text-stone-100">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/95 backdrop-blur-md border-b border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 md:py-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-                <!-- Logo - Robust and Centered -->
-                <a href="../index.html" class="flex items-center justify-center w-full md:w-auto">
-                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain" style="filter: brightness(0) invert(1);">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/90 backdrop-blur-lg border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
+            <div class="flex flex-col items-center justify-center gap-6">
+                <!-- Logo - Prominent and Centered -->
+                <a href="../index.html" class="flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
+                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain">
                 </a>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-6 lg:gap-10">
-                    <a href="../index.html" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Inicio</a>
-                    <a href="index.html" class="nav-link active text-sm font-medium tracking-wide text-stone-100 transition-colors">Portafolio</a>
-                    <a href="../contacto/" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Contacto</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2 absolute right-4 sm:right-6">
-                    <svg class="w-6 h-6 text-stone-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-stone-800">
-                <div class="flex flex-col items-center gap-3 pb-2">
-                    <a href="../index.html" class="text-sm font-medium text-stone-400 py-1">Inicio</a>
-                    <a href="index.html" class="text-sm font-medium text-stone-100 py-1">Portafolio</a>
-                    <a href="../contacto/" class="text-sm font-medium text-stone-400 py-1">Contacto</a>
+                <!-- Navigation Links - Centered -->
+                <div class="flex items-center justify-center gap-8 md:gap-12">
+                    <a href="../index.html" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Inicio</a>
+                    <a href="index.html" class="nav-link active text-xs font-bold uppercase tracking-[0.2em] text-stone-100 transition-colors">Portafolio</a>
+                    <a href="../contacto/" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Contacto</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Portfolio Section -->
-    <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32">
+    <section class="py-24 px-6 pt-64">
         <div class="max-w-7xl mx-auto">
             <!-- Section Header -->
-            <div class="text-center mb-10 sm:mb-12 md:mb-16">
-                <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium mb-3 sm:mb-4">Portafolio</h1>
-                <p class="text-sm sm:text-base md:text-lg text-stone-400 max-w-xl mx-auto px-2">
-                    Una selección de trabajos que reflejan mi pasión por el diseño visual y la identidad de marca.
+            <div class="text-center mb-20">
+                <h1 class="font-serif text-4xl sm:text-6xl font-medium mb-6">Selección de Obra</h1>
+                <p class="text-stone-400 max-w-xl mx-auto tracking-wide font-light">
+                    Explorando la intersección entre el diseño minimalista y la narrativa visual.
                 </p>
             </div>
 
             <!-- Category Filter -->
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 md:mb-12">
-                <button class="category-btn active px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium border border-stone-700 rounded-full transition-all bg-white text-stone-900" data-category="all">
+            <div class="flex flex-wrap justify-center gap-4 mb-20">
+                <button class="category-btn active px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all" data-category="all">
                     Todos
                 </button>
-                <button class="category-btn px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium border border-stone-700 rounded-full transition-all text-stone-400 hover:text-stone-100" data-category="branding">
+                <button class="category-btn px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all text-stone-500 hover:text-stone-100" data-category="branding">
                     Branding
                 </button>
-                <button class="category-btn px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium border border-stone-700 rounded-full transition-all text-stone-400 hover:text-stone-100" data-category="logo">
+                <button class="category-btn px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all text-stone-500 hover:text-stone-100" data-category="logo">
                     Logo Design
                 </button>
-                <button class="category-btn px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium border border-stone-700 rounded-full transition-all text-stone-400 hover:text-stone-100" data-category="photography">
+                <button class="category-btn px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all text-stone-500 hover:text-stone-100" data-category="photography">
                     Fotografía
                 </button>
             </div>
 
             <!-- Masonry Grid -->
             <div id="portfolio-grid" class="masonry-grid">
-                <!-- Portfolio items will be dynamically loaded here -->
+                <!-- Portfolio items loaded by portfolio.js -->
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-6 sm:py-8 px-4 sm:px-6 border-t border-stone-800">
-        <div class="max-w-7xl mx-auto text-center">
-            <p class="text-xs sm:text-sm text-stone-500">
-                © 2025 Nicolás Jofre. Todos los derechos reservados.
+    <footer class="py-12 px-6 border-t border-stone-900 bg-stone-950 text-center">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-600">
+                © 2025 Nicolás Jofre · Visual Designer
             </p>
         </div>
     </footer>
