@@ -75,23 +75,23 @@
 <body class="bg-stone-950 text-stone-100">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/80 backdrop-blur-md border-b border-stone-800">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-3">
-                    <img src="nicolas-jofre-signature.png" alt="Nicolás Jofre" class="h-10 w-auto brightness-0 invert">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/90 backdrop-blur-md border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex flex-col items-center gap-4">
+                <!-- Logo - Larger and Centered -->
+                <a href="index.html" class="flex items-center justify-center">
+                    <img src="nicolas-jofre-signature.png" alt="Nicolás Jofre" class="h-20 md:h-24 w-auto brightness-0 invert">
                 </a>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-8">
+                <div class="hidden md:flex items-center gap-10">
                     <a href="index.html" class="nav-link active text-sm font-medium tracking-wide text-stone-100 hover:text-stone-300 transition-colors">Inicio</a>
                     <a href="portafolio/" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Portafolio</a>
                     <a href="contacto/" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Contacto</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2">
+                <button id="mobile-menu-btn" class="md:hidden absolute right-6 p-2 -mr-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -100,7 +100,7 @@
 
             <!-- Mobile Navigation -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-stone-800">
-                <div class="flex flex-col gap-4">
+                <div class="flex flex-col items-center gap-4">
                     <a href="index.html" class="text-sm font-medium text-stone-100">Inicio</a>
                     <a href="portafolio/" class="text-sm font-medium text-stone-400">Portafolio</a>
                     <a href="contacto/" class="text-sm font-medium text-stone-400">Contacto</a>
@@ -123,10 +123,6 @@
         <!-- Hero Content -->
         <div class="relative z-10 w-full px-6 pt-20">
             <div class="max-w-5xl mx-auto">
-                <div class="fade-in-up opacity-0">
-                    <img src="nicolas-jofre-signature.png" alt="Nicolás Jofre" class="h-20 md:h-32 mb-8 brightness-0 invert">
-                </div>
-                
                 <h1 class="font-serif text-4xl md:text-6xl lg:text-8xl font-medium tracking-tight mb-6 fade-in-up opacity-0 fade-in-up-delay-1">
                     Diseño que cuenta
                     <span class="italic text-stone-400">historias</span>

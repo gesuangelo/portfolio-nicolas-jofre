@@ -71,35 +71,28 @@
             background-color: #fafaf9;
             color: #0c0a09;
         }
-        @media (prefers-color-scheme: dark) {
-            .category-btn.active {
-                background-color: #44403c;
-                color: #fafaf9;
-            }
-        }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-900 dark:bg-stone-950 dark:text-stone-100 transition-colors duration-300">
+<body class="bg-stone-950 text-stone-100">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-md border-b border-stone-200 dark:border-stone-800">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="../index.html" class="flex items-center gap-3">
-                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="h-10 w-auto dark:brightness-0 dark:invert" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-                    <span class="font-serif text-xl font-medium tracking-wide hidden">Nicolás Jofre</span>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/90 backdrop-blur-md border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex flex-col items-center gap-4">
+                <!-- Logo - Larger and Centered -->
+                <a href="../index.html" class="flex items-center justify-center">
+                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="h-20 md:h-24 w-auto brightness-0 invert">
                 </a>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="../index.html" class="nav-link text-sm font-medium tracking-wide text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">Inicio</a>
-                    <a href="index.html" class="nav-link active text-sm font-medium tracking-wide text-stone-900 dark:text-stone-100 transition-colors">Portafolio</a>
-                    <a href="../contacto/" class="nav-link text-sm font-medium tracking-wide text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">Contacto</a>
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="../index.html" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Inicio</a>
+                    <a href="index.html" class="nav-link active text-sm font-medium tracking-wide text-stone-100 transition-colors">Portafolio</a>
+                    <a href="../contacto/" class="nav-link text-sm font-medium tracking-wide text-stone-400 hover:text-stone-100 transition-colors">Contacto</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2">
+                <button id="mobile-menu-btn" class="md:hidden absolute right-6 p-2 -mr-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -107,39 +100,39 @@
             </div>
 
             <!-- Mobile Navigation -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-stone-200 dark:border-stone-800">
-                <div class="flex flex-col gap-4">
-                    <a href="../index.html" class="text-sm font-medium text-stone-600 dark:text-stone-400">Inicio</a>
-                    <a href="index.html" class="text-sm font-medium text-stone-900 dark:text-stone-100">Portafolio</a>
-                    <a href="../contacto/" class="text-sm font-medium text-stone-600 dark:text-stone-400">Contacto</a>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-stone-800">
+                <div class="flex flex-col items-center gap-4">
+                    <a href="../index.html" class="text-sm font-medium text-stone-400">Inicio</a>
+                    <a href="index.html" class="text-sm font-medium text-stone-100">Portafolio</a>
+                    <a href="../contacto/" class="text-sm font-medium text-stone-400">Contacto</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Portfolio Section -->
-    <section class="py-24 px-6 pt-28">
+    <section class="py-24 px-6 pt-32">
         <div class="max-w-7xl mx-auto">
             <!-- Section Header -->
             <div class="text-center mb-16">
                 <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-medium mb-4">Portafolio</h1>
-                <p class="text-stone-600 dark:text-stone-400 max-w-xl mx-auto">
+                <p class="text-stone-400 max-w-xl mx-auto">
                     Una selección de trabajos que reflejan mi pasión por el diseño visual y la identidad de marca.
                 </p>
             </div>
 
             <!-- Category Filter -->
             <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button class="category-btn active px-5 py-2 text-sm font-medium border border-stone-300 dark:border-stone-700 rounded-full transition-all" data-category="all">
+                <button class="category-btn active px-5 py-2 text-sm font-medium border border-stone-700 rounded-full transition-all bg-white text-stone-900" data-category="all">
                     Todos
                 </button>
-                <button class="category-btn px-5 py-2 text-sm font-medium border border-stone-300 dark:border-stone-700 rounded-full transition-all" data-category="branding">
+                <button class="category-btn px-5 py-2 text-sm font-medium border border-stone-700 rounded-full transition-all text-stone-400 hover:text-stone-100" data-category="branding">
                     Branding
                 </button>
-                <button class="category-btn px-5 py-2 text-sm font-medium border border-stone-300 dark:border-stone-700 rounded-full transition-all" data-category="logo">
+                <button class="category-btn px-5 py-2 text-sm font-medium border border-stone-700 rounded-full transition-all text-stone-400 hover:text-stone-100" data-category="logo">
                     Logo Design
                 </button>
-                <button class="category-btn px-5 py-2 text-sm font-medium border border-stone-300 dark:border-stone-700 rounded-full transition-all" data-category="photography">
+                <button class="category-btn px-5 py-2 text-sm font-medium border border-stone-700 rounded-full transition-all text-stone-400 hover:text-stone-100" data-category="photography">
                     Fotografía
                 </button>
             </div>
@@ -152,9 +145,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 px-6 border-t border-stone-200 dark:border-stone-800">
+    <footer class="py-8 px-6 border-t border-stone-800">
         <div class="max-w-7xl mx-auto text-center">
-            <p class="text-sm text-stone-500 dark:text-stone-500">
+            <p class="text-sm text-stone-500">
                 © 2025 Nicolás Jofre. Todos los derechos reservados.
             </p>
         </div>
