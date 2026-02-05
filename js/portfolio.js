@@ -104,13 +104,75 @@ const categoryBtns = document.querySelectorAll('.category-btn');
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
+// Lightbox Elements
+let lightbox, lightboxImg, lightboxTitle, lightboxClose;
+
 // Initialize Portfolio
 function initPortfolio() {
+    createLightbox();
     if (portfolioGrid) {
         renderPortfolio('all');
     }
     setupCategoryFilter();
     setupMobileMenu();
+}
+
+// Create Lightbox DOM structure
+function createLightbox() {
+    lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.className = 'fixed inset-0 z-[100] bg-stone-950/95 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-xl';
+    
+    lightbox.innerHTML = `
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-stone-400 transition-colors p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="max-w-5xl w-full flex flex-col items-center gap-6">
+            <div class="relative w-full aspect-video md:aspect-auto max-h-[70vh] flex items-center justify-center overflow-hidden rounded-lg">
+                <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain shadow-2xl">
+            </div>
+            <div class="text-center">
+                <h3 id="lightbox-title" class="font-serif text-2xl md:text-3xl text-white mb-2 tracking-tight"></h3>
+                <p id="lightbox-desc" class="text-stone-400 text-sm md:text-base max-w-xl mx-auto"></p>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(lightbox);
+    
+    lightboxImg = document.getElementById('lightbox-img');
+    lightboxTitle = document.getElementById('lightbox-title');
+    lightboxDesc = document.getElementById('lightbox-desc');
+    lightboxClose = document.getElementById('lightbox-close');
+    
+    // Close events
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    
+    // Keyboard close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+}
+
+function openLightbox(item) {
+    lightboxImg.src = item.image.replace('w=800', 'w=1600'); // Higher res
+    lightboxTitle.innerText = item.title;
+    lightboxDesc.innerText = item.description;
+    
+    lightbox.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'auto';
+    // Clear src after fade out to avoid flash
+    setTimeout(() => { lightboxImg.src = ''; }, 500);
 }
 
 // Render Portfolio Items
@@ -124,6 +186,9 @@ function renderPortfolio(category) {
     filteredItems.forEach((item, index) => {
         const itemElement = createPortfolioItem(item, index);
         portfolioGrid.appendChild(itemElement);
+        
+        // Add click listener for lightbox
+        itemElement.addEventListener('click', () => openLightbox(item));
     });
     
     // Trigger animation for new items
@@ -156,12 +221,12 @@ function createPortfolioItem(item, index) {
                 class="w-full h-full object-cover"
                 loading="lazy"
             >
-            <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6">
-                <span class="text-xs font-medium text-white/80 uppercase tracking-wider mb-2">
+            <div class="portfolio-overlay absolute inset-0 bg-stone-950/80 flex flex-col justify-end p-6 md:p-8">
+                <span class="text-[10px] font-bold text-stone-400 uppercase tracking-[0.2em] mb-3">
                     ${categoryNames[item.category]}
                 </span>
-                <h3 class="font-serif text-xl text-white mb-2">${item.title}</h3>
-                <p class="text-sm text-white/70">${item.description}</p>
+                <h3 class="font-serif text-xl text-stone-100 mb-2">${item.title}</h3>
+                <p class="text-xs text-stone-500 leading-relaxed">${item.description}</p>
             </div>
         </div>
     `;
