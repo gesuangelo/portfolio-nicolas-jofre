@@ -4,149 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio | Nicolás Jofre</title>
-    <meta name="description" content="Portafolio de Nicolás Jofre - Diseño gráfico, branding, logotipos y fotografía">
+    <meta name="description" content="Proyectos de branding, diseño de logotipos y fotografía editorial de Nicolás Jofre.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/theme.css">
     <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .masonry-grid {
-            column-count: 1;
-            column-gap: 2rem;
-        }
-        @media (min-width: 768px) {
-            .masonry-grid {
-                column-count: 2;
-            }
-        }
-        @media (min-width: 1280px) {
-            .masonry-grid {
-                column-count: 3;
-            }
-        }
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 2rem;
-        }
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: currentColor;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
+        .masonry-grid { column-count: 1; column-gap: 1.5rem; }
+        @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1280px) { .masonry-grid { column-count: 3; column-gap: 2rem; } }
+        .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
         .portfolio-item {
             overflow: hidden;
-            background-color: #1c1917;
-            border-radius: 1.5rem;
-            transition: all 0.5s ease;
+            border: 1px solid var(--line);
+            border-radius: 1.2rem;
+            background: var(--surface);
+            transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease;
         }
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5);
-        }
-        .portfolio-item img {
-            transition: transform 1s cubic-bezier(0.2, 0, 0.2, 1);
-        }
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
-        .category-btn.active {
-            background-color: #fafaf9;
-            color: #0c0a09;
-        }
-        
-        /* Logo Fix: For black text on white background to become white text on dark */
-        .logo-image {
-            filter: invert(1);
-            mix-blend-mode: screen;
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
+        .portfolio-item:hover { transform: translateY(-8px); border-color: #3a4656; box-shadow: 0 24px 60px -28px rgba(0, 0, 0, .8); }
+        .portfolio-item img { transition: transform 1.1s cubic-bezier(0.2, 0, 0.2, 1); filter: saturate(.92) contrast(1.02); }
+        .portfolio-item:hover img { transform: scale(1.08); filter: saturate(1.05) contrast(1.06); }
+        .portfolio-overlay { background: linear-gradient(to top, rgba(10,12,15,.94), rgba(10,12,15,.48) 62%, transparent); }
+        .category-btn { border: 1px solid var(--line); color: var(--muted); background: rgba(16, 20, 26, .4); }
+        .category-btn:hover { color: var(--text); border-color: #415066; }
+        .category-btn.active { background: linear-gradient(120deg, var(--accent), #f2d4ae); color: #111316; border-color: transparent; }
     </style>
 </head>
-<body class="bg-stone-950 text-stone-100">
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/90 backdrop-blur-lg border-b border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
-            <div class="flex flex-col items-center justify-center gap-6">
-                <!-- Logo - Prominent and Centered -->
-                <a href="../index.html" class="flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
-                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain">
+<body>
+    <nav class="site-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 md:py-7">
+            <div class="flex flex-col items-center justify-center gap-5">
+                <a href="../index.html" class="transition-transform hover:scale-105 active:scale-95">
+                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-16 sm:h-20 md:h-24 w-auto object-contain">
                 </a>
-
-                <!-- Navigation Links - Centered -->
-                <div class="flex items-center justify-center gap-8 md:gap-12">
-                    <a href="../index.html" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Inicio</a>
-                    <a href="index.html" class="nav-link active text-xs font-bold uppercase tracking-[0.2em] text-stone-100 transition-colors">Portafolio</a>
-                    <a href="../contacto/" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Contacto</a>
+                <div class="flex items-center justify-center gap-6 md:gap-10">
+                    <a href="../index.html" class="nav-link text-[11px] font-bold">Inicio</a>
+                    <a href="../index.html#agendar-sesion" class="nav-link text-[11px] font-bold">Agendar sesión</a>
+                    <a href="index.html" class="nav-link active text-[11px] font-bold">Portafolio</a>
+                    <a href="../contacto/index.html" class="nav-link text-[11px] font-bold">Contacto</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Portfolio Section -->
-    <section class="py-24 px-6 pt-64">
+    <section class="py-24 px-6 pt-56">
         <div class="max-w-7xl mx-auto">
-            <!-- Section Header -->
-            <div class="text-center mb-20">
-                <h1 class="font-serif text-4xl sm:text-6xl font-medium mb-6">Selección de Obra</h1>
-                <p class="text-stone-400 max-w-xl mx-auto tracking-wide font-light">
-                    Explorando la intersección entre el diseño minimalista y la narrativa visual.
-                </p>
+            <div class="text-center mb-16 md:mb-20">
+                <p class="text-[11px] font-bold tracking-[.28em] uppercase text-[#8d98ab] mb-4">Selección profesional</p>
+                <h1 class="font-display text-4xl sm:text-6xl mb-5">Portafolio destacado</h1>
+                <p class="text-[#b2bfd1] max-w-2xl mx-auto leading-relaxed">Proyectos donde convergen estrategia de marca, dirección visual y ejecución precisa.</p>
             </div>
 
-            <!-- Category Filter -->
-            <div class="flex flex-wrap justify-center gap-4 mb-20">
-                <button class="category-btn active px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all" data-category="all">
-                    Todos
-                </button>
-                <button class="category-btn px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all text-stone-500 hover:text-stone-100" data-category="branding">
-                    Branding
-                </button>
-                <button class="category-btn px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all text-stone-500 hover:text-stone-100" data-category="logo">
-                    Logo Design
-                </button>
-                <button class="category-btn px-8 py-3 text-[10px] font-bold uppercase tracking-widest border border-stone-800 rounded-full transition-all text-stone-500 hover:text-stone-100" data-category="photography">
-                    Fotografía
-                </button>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-14 md:mb-16">
+                <button class="category-btn active px-6 md:px-8 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full transition-all" data-category="all">Todos</button>
+                <button class="category-btn px-6 md:px-8 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full transition-all" data-category="branding">Branding</button>
+                <button class="category-btn px-6 md:px-8 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full transition-all" data-category="logo">Logo design</button>
+                <button class="category-btn px-6 md:px-8 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full transition-all" data-category="photography">Fotografía</button>
             </div>
 
-            <!-- Masonry Grid -->
-            <div id="portfolio-grid" class="masonry-grid">
-                <!-- Portfolio items loaded by portfolio.js -->
-            </div>
+            <div id="portfolio-grid" class="masonry-grid"></div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-stone-900 bg-stone-950 text-center">
-        <div class="max-w-7xl mx-auto">
-            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-600">
-                © 2025 Nicolás Jofre · Visual Designer
-            </p>
+    <footer class="py-10 px-6 border-t footer-base">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-[#738097]">© 2026 Nicolás Jofre · Art Direction & Visual Design</p>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="../js/portfolio.js"></script>
 </body>
 </html>

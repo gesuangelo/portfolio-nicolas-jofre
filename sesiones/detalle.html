@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar sesión | Nicolás Jofre</title>
+  <meta name="description" content="Detalle de sesión, precio y calendario visual para agendar hora con Nicolás Jofre.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/theme.css">
+  <style>
+    .booking-layout { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 1100px) { .booking-layout { grid-template-columns: 1.05fr .95fr; gap: 2rem; } }
+
+    .wizard-step {
+      font-size: .62rem; letter-spacing: .16em; text-transform: uppercase;
+      color: #8da0b6; border: 1px solid #2a3443; border-radius: 999px;
+      padding: .45rem .7rem; background: rgba(16,20,26,.6);
+    }
+    .wizard-step.active { color: #101318; background: linear-gradient(120deg, var(--accent), #f2d4ae); border-color: transparent; }
+
+    .session-media { border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+    .session-media img { width: 100%; height: 430px; object-fit: cover; }
+
+    .info-card, .calendar-card {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: linear-gradient(160deg, rgba(16,20,26,.92), rgba(10,12,15,.92));
+    }
+
+    .calendar-head button {
+      border: 1px solid #324055; border-radius: .6rem; width: 2.25rem; height: 2.25rem;
+      color: #c5d2e1; transition: .2s ease;
+    }
+    .calendar-head button:hover { border-color: #556985; color: #fff; }
+
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: .45rem; }
+    .day-name { font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: #8d9db2; text-align: center; }
+    .day-cell {
+      height: 2.25rem; border-radius: .55rem; border: 1px solid #2a3443;
+      color: #cbd7e6; font-size: .82rem; transition: .2s ease;
+      background: rgba(18,24,32,.7);
+    }
+    .day-cell:hover { border-color: #5a6f8b; transform: translateY(-1px); }
+    .day-cell.muted { opacity: .32; pointer-events: none; }
+    .day-cell.selected { background: linear-gradient(120deg, var(--accent), #f2d4ae); color: #121417; border-color: transparent; font-weight: 700; }
+
+    .time-chip {
+      border: 1px solid #314055; border-radius: 999px; padding: .52rem .9rem;
+      font-size: .72rem; color: #cdd8e6; transition: .2s ease; background: rgba(16,20,26,.8);
+    }
+    .time-chip:hover { border-color: #617898; transform: translateY(-1px); }
+    .time-chip.selected { background: #d5a86f; color: #131518; border-color: transparent; font-weight: 700; }
+
+    .next-btn {
+      width: 100%; padding: .95rem 1rem; border-radius: .6rem; font-size: .7rem;
+      letter-spacing: .16em; text-transform: uppercase; font-weight: 700;
+      background: linear-gradient(120deg, var(--accent), #f2d4ae); color: #101318;
+      transition: .2s ease;
+    }
+    .next-btn:disabled { opacity: .45; cursor: not-allowed; }
+    .next-btn:not(:disabled):hover { transform: translateY(-2px); }
+
+    .mini-note { font-size: .76rem; color: #9eb0c8; line-height: 1.55; }
+  </style>
+</head>
+<body>
+  <nav class="site-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 md:py-7">
+      <div class="flex flex-col items-center justify-center gap-5">
+        <a href="../index.html" class="transition-transform hover:scale-105 active:scale-95">
+          <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-16 sm:h-20 md:h-24 w-auto object-contain">
+        </a>
+        <div class="flex items-center justify-center gap-6 md:gap-10">
+          <a href="../index.html" class="nav-link text-[11px] font-bold">Inicio</a>
+          <a href="../index.html#agendar-sesion" class="nav-link active text-[11px] font-bold">Agendar sesión</a>
+          <a href="../portafolio/index.html" class="nav-link text-[11px] font-bold">Portafolio</a>
+          <a href="../contacto/index.html" class="nav-link text-[11px] font-bold">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="px-6 pt-52 pb-16">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-8 text-center">
+        <p class="text-[11px] tracking-[.26em] uppercase text-[#94a4ba] mb-3">Reserva de sesión</p>
+        <h1 id="session-title" class="font-display text-4xl md:text-6xl mb-4">Sesión pareja</h1>
+        <p id="session-subtitle" class="text-[#b3c1d2] max-w-3xl mx-auto">Detalle de la sesión, precio referencial y agenda visual de ejemplo.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <span class="wizard-step active">1. Fecha</span>
+        <span class="wizard-step">2. Extras</span>
+        <span class="wizard-step">3. Detalles</span>
+        <span class="wizard-step">4. Pago</span>
+        <span class="wizard-step">5. Confirmación</span>
+      </div>
+
+      <div class="booking-layout">
+        <section class="space-y-5">
+          <div class="session-media">
+            <img id="session-image" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1600&q=80" alt="Sesión">
+          </div>
+
+          <div class="info-card p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+              <p id="session-price" class="font-display text-4xl">$90.000 CLP</p>
+              <span id="session-duration" class="booking-tag">90 min</span>
+            </div>
+            <p class="mini-note mb-4">Incluye dirección de poses, selección guiada y entrega digital. Esta demo es visual: el flujo de agenda y pago aún no está conectado a backend.</p>
+            <ul class="mini-note list-disc pl-5 space-y-2">
+              <li>Entrega referencial: 7 días hábiles.</li>
+              <li>Reagendamiento sugerido con 48 horas de anticipación.</li>
+              <li>Bloque de pago Mercado Pago Chile quedará en la fase siguiente.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="calendar-card p-6 md:p-8">
+          <h2 class="font-display text-3xl mb-2">Agenda tu sesión</h2>
+          <p class="mini-note mb-6">Seleccione un día disponible y luego un horario. Interfaz funcional de demostración.</p>
+
+          <div class="calendar-head flex items-center justify-between mb-4">
+            <button id="prev-month" aria-label="Mes anterior">◀</button>
+            <p id="month-label" class="text-sm tracking-[.16em] uppercase text-[#d0dceb]"></p>
+            <button id="next-month" aria-label="Mes siguiente">▶</button>
+          </div>
+
+          <div class="calendar-grid mb-3" id="day-names"></div>
+          <div class="calendar-grid mb-6" id="calendar-days"></div>
+
+          <div class="mb-3">
+            <p id="selected-date-label" class="mini-note">Seleccione una fecha para ver horarios.</p>
+          </div>
+
+          <div id="time-slots" class="flex flex-wrap gap-2 mb-6"></div>
+
+          <button id="continue-btn" class="next-btn" disabled>Continuar (demo)</button>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-10 px-6 border-t footer-base">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-[#738097]">© 2026 Nicolás Jofre · Art Direction & Visual Design</p>
+    </div>
+  </footer>
+
+  <script src="../js/booking-demo.js"></script>
+</body>
+</html>

@@ -3,164 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolás Jofre | Diseñador Gráfico</title>
-    <meta name="description" content="Portafolio profesional de Nicolás Jofre - Diseñador Gráfico especializado en branding, fotografía y diseño de logotipos">
+    <title>Nicolás Jofre | Dirección de Arte & Diseño Visual</title>
+    <meta name="description" content="Portafolio profesional de Nicolás Jofre. Branding, dirección de arte, fotografía editorial y diseño visual contemporáneo.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/theme.css">
     <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
+        .grain::before {
             content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: currentColor;
-            transition: width 0.3s ease;
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.08;
+            z-index: 1;
+            background-image: radial-gradient(#fff 0.5px, transparent 0.5px);
+            background-size: 3px 3px;
         }
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        .hero-image-container {
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-image-container::before {
+        .hero-wrap { position: relative; isolation: isolate; }
+        .hero-wrap::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(12, 10, 9, 0.4) 0%, rgba(12, 10, 9, 0.2) 100%);
+            background: linear-gradient(to bottom, rgba(11,13,16,.3), rgba(11,13,16,.86));
             z-index: 1;
         }
-        .hero-image {
+        .hero-bg {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            animation: subtleZoom 20s ease-in-out infinite alternate;
+            transform: scale(1.02);
+            animation: cinematicZoom 18s ease-in-out infinite alternate;
         }
-        @keyframes subtleZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+        @keyframes cinematicZoom {
+            from { transform: scale(1.02) translateY(0); }
+            to { transform: scale(1.1) translateY(-1.5%); }
         }
-        .fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .7rem;
+            font-size: .64rem;
+            text-transform: uppercase;
+            letter-spacing: .32em;
+            color: var(--muted);
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .eyebrow::before {
+            content: '';
+            width: 44px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
         }
-        .fade-in-up-delay-1 { animation-delay: 0.2s; }
-        .fade-in-up-delay-2 { animation-delay: 0.4s; }
-        .fade-in-up-delay-3 { animation-delay: 0.6s; }
-        
-        /* Logo Fix: For black text on white background to become white text on dark */
-        .logo-image {
-            filter: invert(1);
-            mix-blend-mode: screen;
-            display: block;
-            max-width: 100%;
-            height: auto;
+        .hero-title { text-wrap: balance; line-height: .97; font-size: clamp(2.2rem, 8vw, 6.8rem); }
+        .hero-title em { color: var(--accent); font-style: italic; text-shadow: 0 0 24px rgba(213, 168, 111, .2); }
+        .cta-primary, .cta-secondary {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            padding: 1.05rem 2rem;
+            transition: transform .28s ease, box-shadow .28s ease, background .28s ease, color .28s ease;
         }
+        .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 32px -14px rgba(213,168,111,.7); }
+        .cta-secondary:hover { transform: translateY(-3px); border-color: var(--accent-2); color: #d9edf3; }
+        .signature-panel { border: 1px solid var(--line); background: linear-gradient(145deg, rgba(16,20,26,.92), rgba(9,11,14,.9)); }
+        .fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp .9s ease forwards; }
+        .delay-1 { animation-delay: .16s; }
+        .delay-2 { animation-delay: .32s; }
+        .delay-3 { animation-delay: .48s; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-stone-950 text-stone-100">
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/90 backdrop-blur-lg border-b border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
-            <div class="flex flex-col items-center justify-center gap-6">
-                <!-- Logo - Prominent and Centered -->
-                <a href="index.html" class="flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
-                    <img src="nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain">
+<body class="grain">
+    <nav class="site-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 md:py-7">
+            <div class="flex flex-col items-center justify-center gap-5">
+                <a href="index.html" class="transition-transform hover:scale-105 active:scale-95">
+                    <img src="nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-16 sm:h-20 md:h-24 w-auto object-contain">
                 </a>
-
-                <!-- Navigation Links - Centered -->
-                <div class="flex items-center justify-center gap-8 md:gap-12">
-                    <a href="index.html" class="nav-link active text-xs font-bold uppercase tracking-[0.2em] text-stone-100 transition-colors">Inicio</a>
-                    <a href="portafolio/" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Portafolio</a>
-                    <a href="contacto/" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Contacto</a>
+                <div class="flex items-center justify-center gap-6 md:gap-10">
+                    <a href="index.html" class="nav-link active text-[11px] font-bold">Inicio</a>
+                    <a href="#agendar-sesion" class="nav-link text-[11px] font-bold">Agendar sesión</a>
+                    <a href="portafolio/index.html" class="nav-link text-[11px] font-bold">Portafolio</a>
+                    <a href="contacto/index.html" class="nav-link text-[11px] font-bold">Contacto</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <!-- Hero Background Image -->
-        <div class="hero-image-container absolute inset-0">
-            <img 
-                src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2000&auto=format&fit=crop" 
-                alt="Nicolás Jofre trabajando" 
-                class="hero-image opacity-60"
-            >
-        </div>
-
-        <!-- Hero Content -->
-        <div class="relative z-10 w-full px-6 pt-48 pb-20 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight mb-8 fade-in-up opacity-0 fade-in-up-delay-1 leading-[1.1]">
-                    Capturando la esencia del <span class="italic text-stone-400">diseño</span>
-                </h1>
-                
-                <p class="text-lg sm:text-xl text-stone-300 max-w-2xl mx-auto mb-12 leading-relaxed fade-in-up opacity-0 fade-in-up-delay-2 font-light tracking-wide">
-                    Diseñador gráfico y fotógrafo editorial enfocado en crear piezas visuales que trascienden el tiempo.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up opacity-0 fade-in-up-delay-3">
-                    <a href="portafolio/" class="w-full sm:w-auto px-10 py-5 bg-white text-stone-950 text-xs font-bold uppercase tracking-widest hover:bg-stone-200 transition-all transform hover:-translate-y-1">
-                        Explorar Obra
-                    </a>
-                    <a href="contacto/" class="w-full sm:w-auto px-10 py-5 border border-stone-700 text-stone-100 text-xs font-bold uppercase tracking-widest hover:bg-stone-100 hover:text-stone-950 transition-all transform hover:-translate-y-1">
-                        Hablemos
-                    </a>
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden hero-wrap">
+        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2400&auto=format&fit=crop" alt="Nicolás Jofre trabajando" class="hero-bg absolute inset-0 opacity-55">
+        <div class="relative z-10 w-full px-6 pt-44 pb-16 text-center">
+            <div class="max-w-5xl mx-auto">
+                <span class="eyebrow fade-up">Dirección de Arte · Diseño Visual</span>
+                <h1 class="font-display hero-title mt-8 mb-8 fade-up delay-1">Diseño con carácter, <em>memoria</em> y precisión</h1>
+                <p class="text-base sm:text-lg text-[#c3cfdd] max-w-2xl mx-auto mb-12 leading-relaxed fade-up delay-2">Desarrollo identidades y piezas editoriales para marcas que buscan una estética sofisticada y una narrativa visual contundente.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-up delay-3">
+                    <a href="portafolio/index.html" class="cta-primary w-full sm:w-auto">Explorar proyectos</a>
+                    <a href="contacto/index.html" class="cta-secondary w-full sm:w-auto">Iniciar conversación</a>
                 </div>
             </div>
         </div>
-
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-            <div class="w-[1px] h-16 bg-gradient-to-b from-stone-400 to-transparent"></div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">
+            <div class="w-px h-20 bg-gradient-to-b from-[#c7d2df] to-transparent"></div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-stone-900 bg-stone-950 text-center">
+    <section class="px-6 pb-20 relative z-10">
+        <div class="max-w-4xl mx-auto signature-panel rounded-2xl p-8 md:p-12 text-center">
+            <p class="text-[11px] tracking-[.24em] uppercase text-[#95a0b1] mb-4">Enfoque profesional</p>
+            <p class="font-display text-2xl md:text-4xl leading-tight">Branding, fotografía y sistemas visuales diseñados para perdurar.</p>
+        </div>
+    </section>
+
+    <section id="agendar-sesion" class="px-6 pb-20 md:pb-24 relative z-10 scroll-mt-48">
         <div class="max-w-7xl mx-auto">
-            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-600">
-                © 2025 Nicolás Jofre · Visual Designer
-            </p>
+            <div class="text-center mb-12 md:mb-16">
+                <p class="text-[11px] tracking-[.28em] uppercase text-[#95a0b1] mb-4">Reserva de sesiones</p>
+                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl mb-5">Agendar sesión</h2>
+                <p class="text-[#b6c2d3] max-w-3xl mx-auto leading-relaxed">Seleccione el tipo de sesión que necesita. Esta etapa es visual; en la siguiente fase conectaremos disponibilidad en calendario y pago con Mercado Pago Chile.</p>
+            </div>
+
+            <div class="booking-grid">
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1200&q=80" alt="Sesión retrato profesional">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Retrato profesional</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">60 min</span>Perfil profesional · LinkedIn</p>
+                        <a href="sesiones/detalle.html?session=retrato" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&q=80" alt="Sesión pareja">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Sesión pareja</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">90 min</span>Estudio o exterior</p>
+                        <a href="sesiones/detalle.html?session=pareja" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&q=80" alt="Sesión familiar">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Sesión familiar</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">90 min</span>Hasta 6 integrantes</p>
+                        <a href="sesiones/detalle.html?session=familiar" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80" alt="Sesión embarazo">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Sesión embarazo</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">120 min</span>Dirección artística completa</p>
+                        <a href="sesiones/detalle.html?session=embarazo" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&q=80" alt="Sesión infantil">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Sesión infantil</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">60 min</span>1 a 4 niños</p>
+                        <a href="sesiones/detalle.html?session=infantil" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1552581234-26160f608093?w=1200&q=80" alt="Sesión branding personal">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Branding personal</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">90 min</span>Contenido para redes y web</p>
+                        <a href="sesiones/detalle.html?session=branding" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80" alt="Sesión book creativo">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Book creativo</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">90 min</span>Estilo editorial</p>
+                        <a href="sesiones/detalle.html?session=book" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80" alt="Sesión express">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Sesión express</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">30 min</span>Entrega rápida</p>
+                        <a href="sesiones/detalle.html?session=express" class="booking-btn">Reservar sesión</a>
+                    </div>
+                </article>
+
+                <article class="booking-card">
+                    <img class="booking-image" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1200&q=80" alt="Extras de sesión">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl mb-2">Extras de sesión</h3>
+                        <p class="booking-meta mb-4"><span class="booking-tag">Opcional</span>Maquillaje · Vestuario · Retoque</p>
+                        <a href="sesiones/detalle.html?session=extras" class="booking-btn">Ver opciones</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 px-6 border-t footer-base">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-[#738097]">© 2026 Nicolás Jofre · Art Direction & Visual Design</p>
         </div>
     </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Trigger animations on load
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelectorAll('.fade-in-up').forEach(el => {
-                    el.classList.add('opacity-100');
-                    el.style.opacity = '1';
-                });
-            }, 100);
-        });
-    </script>
 </body>
 </html>

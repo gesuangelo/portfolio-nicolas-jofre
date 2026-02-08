@@ -4,75 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Nicolás Jofre</title>
-    <meta name="description" content="Contacta a Nicolás Jofre - Diseñador gráfico especializado en branding y fotografía">
+    <meta name="description" content="Contacto profesional de Nicolás Jofre para proyectos de branding, dirección de arte y fotografía.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/theme.css">
     <style>
-        * { font-family: 'Inter', sans-serif; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .nav-link { position: relative; }
-        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background-color: currentColor; transition: width 0.3s ease; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        
-        .contact-card { transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1); border: 1px solid #292524; }
-        .contact-card:hover { transform: scale(1.02); border-color: #57534e; background: #1c1917; }
-        
-        .logo-image { filter: invert(1); mix-blend-mode: screen; display: block; max-width: 100%; height: auto; }
-        
-        .fade-in { animation: fadeIn 1s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .contact-card { transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
+        .contact-card:hover { transform: translateY(-6px); border-color: #3b495d; box-shadow: 0 18px 44px -22px rgba(0, 0, 0, .85); }
+        .contact-cta { transition: transform .25s ease, box-shadow .25s ease; }
+        .contact-cta:hover { transform: translateY(-3px); box-shadow: 0 20px 34px -14px rgba(213,168,111,.72); }
+        .intro-line { font-size: .68rem; text-transform: uppercase; letter-spacing: .28em; color: #95a0b1; }
     </style>
 </head>
-<body class="bg-stone-950 text-stone-100 min-h-screen">
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-950/90 backdrop-blur-lg border-b border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
-            <div class="flex flex-col items-center justify-center gap-6">
-                <a href="../index.html" class="flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
-                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain">
+<body>
+    <nav class="site-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 md:py-7">
+            <div class="flex flex-col items-center justify-center gap-5">
+                <a href="../index.html" class="transition-transform hover:scale-105 active:scale-95">
+                    <img src="../nicolas-jofre-signature.png" alt="Nicolás Jofre" class="logo-image h-16 sm:h-20 md:h-24 w-auto object-contain">
                 </a>
-                <div class="flex items-center justify-center gap-8 md:gap-12">
-                    <a href="../index.html" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Inicio</a>
-                    <a href="../portafolio/" class="nav-link text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-stone-100 transition-colors">Portafolio</a>
-                    <a href="index.html" class="nav-link active text-xs font-bold uppercase tracking-[0.2em] text-stone-100 transition-colors">Contacto</a>
+                <div class="flex items-center justify-center gap-6 md:gap-10">
+                    <a href="../index.html" class="nav-link text-[11px] font-bold">Inicio</a>
+                    <a href="../index.html#agendar-sesion" class="nav-link text-[11px] font-bold">Agendar sesión</a>
+                    <a href="../portafolio/index.html" class="nav-link text-[11px] font-bold">Portafolio</a>
+                    <a href="index.html" class="nav-link active text-[11px] font-bold">Contacto</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Contact Section -->
-    <section class="min-h-screen flex items-center justify-center px-6 pt-64 pb-20">
-        <div class="max-w-4xl mx-auto w-full text-center">
-            <h1 class="font-serif text-4xl sm:text-6xl font-medium mb-12 fade-in">Hablemos</h1>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 fade-in">
-                <div class="contact-card p-10 rounded-3xl">
-                    <h3 class="font-serif text-xl mb-4">Email</h3>
-                    <p class="text-stone-400 text-sm tracking-wide">hola@nicolasjofre.cl</p>
+    <section class="min-h-screen flex items-center justify-center px-6 pt-52 pb-16">
+        <div class="max-w-5xl mx-auto w-full text-center">
+            <p class="intro-line mb-4">Agenda abierta para nuevos proyectos</p>
+            <h1 class="font-display text-4xl sm:text-6xl md:text-7xl mb-8">Conversemos su próxima marca</h1>
+            <p class="text-[#b3bfd0] max-w-2xl mx-auto leading-relaxed mb-14">Trabajo con empresas y equipos creativos que valoran una identidad visual sólida, elegante y funcional.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+                <div class="contact-card card-surface p-8 rounded-2xl">
+                    <h3 class="font-display text-2xl mb-4">Email</h3>
+                    <p class="text-[#b3bfd0] text-sm tracking-wide">hola@nicolasjofre.cl</p>
                 </div>
-                <div class="contact-card p-10 rounded-3xl">
-                    <h3 class="font-serif text-xl mb-4">Redes</h3>
-                    <p class="text-stone-400 text-sm tracking-wide">@nicolasjofre.design</p>
+                <div class="contact-card card-surface p-8 rounded-2xl">
+                    <h3 class="font-display text-2xl mb-4">Instagram</h3>
+                    <p class="text-[#b3bfd0] text-sm tracking-wide">@nicolasjofre.design</p>
                 </div>
-                <div class="contact-card p-10 rounded-3xl">
-                    <h3 class="font-serif text-xl mb-4">Ubicación</h3>
-                    <p class="text-stone-400 text-sm tracking-wide">Santiago, Chile</p>
+                <div class="contact-card card-surface p-8 rounded-2xl">
+                    <h3 class="font-display text-2xl mb-4">Ubicación</h3>
+                    <p class="text-[#b3bfd0] text-sm tracking-wide">Santiago, Chile</p>
                 </div>
             </div>
 
-            <a href="mailto:hola@nicolasjofre.cl" class="inline-block px-12 py-6 bg-white text-stone-950 text-xs font-bold uppercase tracking-widest hover:bg-stone-200 transition-all">
-                Iniciar Proyecto
-            </a>
+            <a href="mailto:hola@nicolasjofre.cl" class="contact-cta inline-block px-12 py-5 text-[11px] font-bold uppercase tracking-[.2em] rounded-md">Iniciar proyecto</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-stone-900 bg-stone-950 text-center">
-        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-600">© 2025 Nicolás Jofre · Visual Designer</p>
+    <footer class="py-10 px-6 border-t footer-base">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-[#738097]">© 2026 Nicolás Jofre · Art Direction & Visual Design</p>
+        </div>
     </footer>
-
 </body>
 </html>
