@@ -11,6 +11,79 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/theme.css">
     <style>
+        body.intro-pending {
+            overflow: hidden;
+        }
+        .site-shell {
+            opacity: 1;
+            filter: blur(0px);
+            transform: scale(1);
+            transition: opacity .55s ease, filter .55s ease, transform .55s ease;
+        }
+        body.intro-pending .site-shell {
+            opacity: 0;
+            filter: blur(10px);
+            transform: scale(1.01);
+        }
+        .intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: #050608;
+            display: grid;
+            place-items: center;
+            transition: opacity .45s ease, visibility .45s ease;
+        }
+        .intro-overlay.is-hiding {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            filter: saturate(.88) contrast(1.06) brightness(.92);
+        }
+        @media (min-width: 1024px) {
+            .intro-video {
+                width: auto;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                object-position: center center;
+                background: #050608;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+        .intro-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 50%, transparent 36%, rgba(0,0,0,.58) 100%),
+                radial-gradient(#ffffff14 .7px, transparent .7px);
+            background-size: auto, 3px 3px;
+            mix-blend-mode: screen;
+            opacity: .38;
+        }
+        .intro-skip {
+            position: absolute;
+            right: 1.2rem;
+            bottom: 1.2rem;
+            z-index: 2;
+            font-size: .62rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: #d7dde7;
+            border: 1px solid rgba(215, 221, 231, .4);
+            padding: .78rem 1rem;
+            background: rgba(7, 9, 12, .56);
+            backdrop-filter: blur(4px);
+        }
         .grain::before {
             content: '';
             position: fixed;
@@ -75,7 +148,15 @@
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="grain">
+<body class="grain intro-pending">
+    <div id="introOverlay" class="intro-overlay" aria-hidden="true">
+        <video id="introVideo" class="intro-video" autoplay muted playsinline preload="auto">
+            <source src="assets/intro-video.mp4" type="video/mp4">
+        </video>
+        <button id="introSkip" class="intro-skip" type="button">Omitir intro</button>
+    </div>
+
+    <div class="site-shell">
     <nav class="site-nav fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 md:py-7">
             <div class="flex flex-col items-center justify-center gap-5">
@@ -215,5 +296,38 @@
             <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-[#738097]">© 2026 Nicolás Jofre · Art Direction & Visual Design</p>
         </div>
     </footer>
+    </div>
+
+    <script>
+        (function () {
+            const overlay = document.getElementById('introOverlay');
+            const video = document.getElementById('introVideo');
+            const skip = document.getElementById('introSkip');
+            if (!overlay || !video) {
+                document.body.classList.remove('intro-pending');
+                return;
+            }
+
+            let finished = false;
+            const finishIntro = () => {
+                if (finished) return;
+                finished = true;
+                overlay.classList.add('is-hiding');
+                document.body.classList.remove('intro-pending');
+                setTimeout(() => overlay.remove(), 520);
+            };
+
+            skip?.addEventListener('click', finishIntro);
+            video.addEventListener('ended', finishIntro);
+            video.addEventListener('error', finishIntro);
+
+            const playAttempt = video.play();
+            if (playAttempt && typeof playAttempt.catch === 'function') {
+                playAttempt.catch(() => setTimeout(finishIntro, 300));
+            }
+
+            setTimeout(finishIntro, 9000);
+        })();
+    </script>
 </body>
 </html>
